@@ -10,8 +10,8 @@ require (
 	github.com/Azure/go-autorest/autorest/adal v0.9.16
 	github.com/Azure/go-autorest/autorest/to v0.4.0
 	github.com/G-Core/g-dns-sdk-go v0.0.0-20210817143738-34f4db9f1823
-	github.com/akamai/AkamaiOPEN-edgegrid-golang v1.1.1
 	github.com/StackExchange/dnscontrol v0.2.8
+	github.com/akamai/AkamaiOPEN-edgegrid-golang v1.1.1
 	github.com/alecthomas/assert v0.0.0-20170929043011-405dbfeb8e38 // indirect
 	github.com/alecthomas/colour v0.1.0 // indirect
 	github.com/alecthomas/kingpin v2.2.5+incompatible
@@ -28,7 +28,6 @@ require (
 	github.com/exoscale/egoscale v0.73.2
 	github.com/ffledgling/pdns-go v0.0.0-20180219074714-524e7daccd99
 	github.com/go-gandi/go-gandi v0.0.0-20200921091836-0d8a64b9cc09
-	github.com/go-logr/logr v1.1.0 // indirect
 	github.com/golang/sync v0.0.0-20180314180146-1d60e4601c6f
 	github.com/google/go-cmp v0.5.6
 	github.com/gophercloud/gophercloud v0.21.0
@@ -67,7 +66,6 @@ require (
 	golang.org/x/net v0.0.0-20210928044308-7d9f5e0b762b
 	golang.org/x/oauth2 v0.0.0-20210819190943-2bc19b11175f
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
-	golang.org/x/tools v0.0.0-20200708003708-134513de8882 // indirect
 	golang.org/x/sys v0.0.0-20210927094055-39ccf1dd6fa6 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/api v0.58.0
