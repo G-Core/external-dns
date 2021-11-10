@@ -35,6 +35,9 @@ provider/dyn: provider/dyn*
 # Add 'provider/exoscale' in file which starts with exoscale
 provider/exoscale: provider/exoscale*
 
+# Add 'provider/gcore' in file which starts with gcore
+provider/gcore: provider/gcore*
+
 # Add 'provider/transip' in file which starts with transip
 provider/transip: provider/transip*
 

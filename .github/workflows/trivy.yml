@@ -2,7 +2,7 @@ name: trivy vulnerability scanner
 on:
   push:
     branches:
-      - master
+      - gcore
 jobs:
   build:
     name: Build

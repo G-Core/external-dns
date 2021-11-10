@@ -3,11 +3,10 @@
 </p>
 
 # ExternalDNS
-[![Build Status](https://github.com/kubernetes-sigs/external-dns/workflows/Go/badge.svg)](https://github.com/kubernetes-sigs/external-dns/actions)
-[![Coverage Status](https://coveralls.io/repos/github/kubernetes-sigs/external-dns/badge.svg)](https://coveralls.io/github/kubernetes-sigs/external-dns)
-[![GitHub release](https://img.shields.io/github/release/kubernetes-sigs/external-dns.svg)](https://github.com/kubernetes-sigs/external-dns/releases)
-[![go-doc](https://godoc.org/github.com/kubernetes-sigs/external-dns?status.svg)](https://godoc.org/github.com/kubernetes-sigs/external-dns)
-[![Go Report Card](https://goreportcard.com/badge/github.com/kubernetes-sigs/external-dns)](https://goreportcard.com/report/github.com/kubernetes-sigs/external-dns)
+[![Build Status](https://github.com/G-Core/external-dns/workflows/Go/badge.svg)](https://github.com/G-Core/external-dns/actions)
+[![Coverage Status](https://coveralls.io/repos/github/G-Core/external-dns/badge.svg)](https://coveralls.io/github/G-Core/external-dns)
+[![GitHub release](https://img.shields.io/github/release/G-Core/external-dns.svg)](https://github.com/G-Core/external-dns/releases)
+[![Go Report Card](https://goreportcard.com/badge/github.com/G-Core/external-dns)](https://goreportcard.com/report/github.com/G-Core/external-dns)
 
 ExternalDNS synchronizes exposed Kubernetes Services and Ingresses with DNS providers.
 
@@ -62,7 +61,7 @@ Note that all flags can be replaced with environment variables; for instance,
 
 ## Status of providers
 
-ExternalDNS supports multiple DNS providers which have been implemented by the [ExternalDNS contributors](https://github.com/kubernetes-sigs/external-dns/graphs/contributors). Maintaining all of those in a central repository is a challenge and we have limited resources to test changes. This means that it is very hard to test all providers for possible regressions and, as written in the [Contributing](#Contributing) section, we encourage contributors to step in as maintainers for the individual providers and help by testing the integrations.
+ExternalDNS supports multiple DNS providers which have been implemented by the [ExternalDNS contributors](https://github.com/G-Core/external-dns/graphs/contributors). Maintaining all of those in a central repository is a challenge and we have limited resources to test changes. This means that it is very hard to test all providers for possible regressions and, as written in the [Contributing](#Contributing) section, we encourage contributors to step in as maintainers for the individual providers and help by testing the integrations.
 
 End-to-end testing of ExternalDNS is currently
 [performed](https://github.com/zalando-incubator/kubernetes-on-aws/blob/dev/test/e2e/external_dns.go)
@@ -304,7 +303,7 @@ Here's a rough outline on what is to come (subject to change):
 * Support for CRDs
 * Support for more advanced DNS record configurations
 
-Have a look at [the milestones](https://github.com/kubernetes-sigs/external-dns/milestones) to get an idea of where we currently stand.
+Have a look at [the milestones](https://github.com/G-Core/external-dns/milestones) to get an idea of where we currently stand.
 
 ## Contributing
 
@@ -320,7 +319,7 @@ show us what you can do!
 
 The external-dns project is currently in need of maintainers for specific DNS providers. Ideally each provider
 would have at least two maintainers. It would be nice if the maintainers run the provider in production, but it
-is not strictly required. Provider listed [here](https://github.com/kubernetes-sigs/external-dns#status-of-providers)
+is not strictly required. Provider listed [here](https://github.com/G-Core/external-dns#status-of-providers)
 that do not have a maintainer listed are in need of assistance.
 
 Read the [contributing guidelines](CONTRIBUTING.md) and have a look at [the contributing docs](docs/contributing/getting-started.md) to learn about building the project, the project structure, and the purpose of each package.
