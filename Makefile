@@ -87,7 +87,6 @@ BINARY        ?= external-dns
 SOURCES        = $(shell find . -name '*.go')
 IMAGE         ?= harbor.p.gc.onl/library/$(BINARY)
 VERSION       ?= $(shell git describe --tags --always --dirty)
-GCORE_VERSION ?= $(shell git describe --tags --always)
 BUILD_FLAGS   ?= -v
 LDFLAGS       ?= -X sigs.k8s.io/external-dns/pkg/apis/externaldns.Version=$(VERSION) -w -s
 ARCHS         = amd64 arm64v8 arm32v7
@@ -135,7 +134,7 @@ build.mini:
 	docker build --rm --tag "$(IMAGE):$(VERSION)-mini" --build-arg VERSION="$(VERSION)" -f Dockerfile.mini .
 
 build.gcore:
-	docker build --rm --tag "$(IMAGE):$(GCORE_VERSION)-mini" --build-arg VERSION="$(GCORE_VERSION)" -f Dockerfile.mini .
+	docker build --rm --tag "$(IMAGE):$(VERSION)-mini" --build-arg VERSION="$(VERSION)" -f Dockerfile.mini .
 
 clean:
 	@rm -rf build
