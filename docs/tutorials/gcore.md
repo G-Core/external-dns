@@ -1,7 +1,6 @@
 # Setting up ExternalDNS for Services on G-Core Labs
 
-This tutorial describes how to setup ExternalDNS for use within a
-Kubernetes cluster using G-Core Labs DNS.
+This tutorial describes how to setup Kubernetes ExternalDNS using G-Core Labs DNS.
 
 Make sure to use **>=0.10** version of ExternalDNS for this tutorial.
 
@@ -10,15 +9,15 @@ Make sure to use **>=0.10** version of ExternalDNS for this tutorial.
 If you are new to G-Core Labs, we recommend you first read the following
 instructions for creating a zone.
 
-[Creating a zone using the G-Core Labs web console](https://dns.gcorelabs.com/zones)
+[Creating a zone using the G-Core Labs web console](https://gcorelabs.com/support/articles/360012064557/)
 
 [Creating a zone using the G-Core Labs API](https://dnsapi.gcorelabs.com/docs#operation/CreateZone)
 
 ## Creating G-Core Labs API key
 
-You first need to create a permanent API token.
+Start with creating a permanent API token.
 
-Using the [G-Core Labs documentation](https://gcorelabs.com/support/articles/360018625617/) you will have your `permanent API token`
+Using the [G-Core Labs documentation](https://gcorelabs.com/support/articles/360018625617/) you will get your `permanent API token`
 
 ## Build ExternalDNS docker locally
 
@@ -118,7 +117,7 @@ spec:
       serviceAccountName: external-dns
       containers:
       - name: external-dns
-        image: harbor.p.gc.onl/library/external-dns:v0.10.0
+        image: harbor.p.gc.onl/library/external-dns:v0.10.0 # put publicly available link here
         args:
           - --source=service # ingress is also possible
           - --domain-filter=example.com # (optional) limit to only example.com domains; change to match the zone created above.
@@ -173,7 +172,7 @@ spec:
 
 Verify that the annotation on the service uses the same hostname as the G-Core Labs DNS zone created above. The annotation may also be a subdomain of the DNS zone (e.g. 'www.example.com').
 
-The TTL annotation can be used to configure the TTL on DNS records managed by ExternalDNS and is optional. If this annotation is not set, the TTL on records managed by ExternalDNS will default to 10.
+The TTL annotation can be used to configure the TTL on DNS records managed by ExternalDNS and is optional. If this annotation is not set, default TTL value 10 will be applied.
 
 ExternalDNS uses the hostname annotation to determine which services should be registered with DNS. Removing the hostname annotation will cause ExternalDNS to remove the corresponding DNS records.
 
