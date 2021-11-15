@@ -20,6 +20,10 @@ You first need to create a permanent API token.
 
 Using the [G-Core Labs documentation](https://gcorelabs.com/support/articles/360018625617/) you will have your `permanent API token`
 
+## Build ExternalDNS docker locally
+
+- `make build.gcore`
+
 ## Deploy ExternalDNS
 
 Connect your `kubectl` client to the cluster with which you want to test ExternalDNS, and then apply one of the following manifest files for deployment:
