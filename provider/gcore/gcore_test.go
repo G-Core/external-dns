@@ -22,20 +22,20 @@ import (
 	"reflect"
 	"testing"
 
-	gdns "github.com/G-Core/g-dns-sdk-go"
+	gdns "github.com/G-Core/gcore-dns-sdk-go"
 
 	"sigs.k8s.io/external-dns/endpoint"
 	"sigs.k8s.io/external-dns/plan"
 )
 
 type dnsManagerMock struct {
-	addZoneRRSet      func(ctx context.Context, zone, recordName, recordType string, values []gdns.ResourceRecords, ttl int) error
+	addZoneRRSet      func(ctx context.Context, zone, recordName, recordType string, values []gdns.ResourceRecord, ttl int) error
 	zonesWithRecords  func(ctx context.Context, filters ...func(zone *gdns.ZonesFilter)) ([]gdns.Zone, error)
 	zones             func(ctx context.Context, filters ...func(zone *gdns.ZonesFilter)) ([]gdns.Zone, error)
 	deleteRRSetRecord func(ctx context.Context, zone, name, recordType string, contents ...string) error
 }
 
-func (d dnsManagerMock) AddZoneRRSet(ctx context.Context, zone, recordName, recordType string, values []gdns.ResourceRecords, ttl int) error {
+func (d dnsManagerMock) AddZoneRRSet(ctx context.Context, zone, recordName, recordType string, values []gdns.ResourceRecord, ttl int, opts ...gdns.AddZoneOpt) error {
 	return d.addZoneRRSet(ctx, zone, recordName, recordType, values, ttl)
 }
 func (d dnsManagerMock) ZonesWithRecords(ctx context.Context, filters ...func(zone *gdns.ZonesFilter)) ([]gdns.Zone, error) {
@@ -373,7 +373,7 @@ func Test_dnsProvider_ApplyChanges(t *testing.T) {
 						filters ...func(zone *gdns.ZonesFilter)) ([]gdns.Zone, error) {
 						return []gdns.Zone{{Name: "test.com"}}, nil
 					},
-					addZoneRRSet: func(ctx context.Context, zone, recordName, recordType string, values []gdns.ResourceRecords, ttl int) error {
+					addZoneRRSet: func(ctx context.Context, zone, recordName, recordType string, values []gdns.ResourceRecord, ttl int) error {
 						if zone == "test.com" &&
 							ttl == 10 &&
 							recordName == "my.test.com" &&
@@ -412,7 +412,7 @@ func Test_dnsProvider_ApplyChanges(t *testing.T) {
 						return fmt.Errorf("deleteRRSetRecord wrong params: %s %s %s %+v",
 							zone, name, recordType, contents)
 					},
-					addZoneRRSet: func(ctx context.Context, zone, recordName, recordType string, values []gdns.ResourceRecords, ttl int) error {
+					addZoneRRSet: func(ctx context.Context, zone, recordName, recordType string, values []gdns.ResourceRecord, ttl int) error {
 						if zone == "test.com" &&
 							ttl == 10 &&
 							recordName == "my.test.com" &&

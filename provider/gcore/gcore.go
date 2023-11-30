@@ -25,7 +25,7 @@ import (
 
 	"golang.org/x/sync/errgroup"
 
-	gdns "github.com/G-Core/g-dns-sdk-go"
+	gdns "github.com/G-Core/gcore-dns-sdk-go"
 	log "github.com/sirupsen/logrus"
 
 	"sigs.k8s.io/external-dns/endpoint"
@@ -41,7 +41,7 @@ const (
 )
 
 type dnsManager interface {
-	AddZoneRRSet(ctx context.Context, zone, recordName, recordType string, values []gdns.ResourceRecords, ttl int) error
+	AddZoneRRSet(ctx context.Context, zone, recordName, recordType string, values []gdns.ResourceRecord, ttl int, opts ...gdns.AddZoneOpt) error
 	ZonesWithRecords(ctx context.Context, filters ...func(zone *gdns.ZonesFilter)) ([]gdns.Zone, error)
 	Zones(ctx context.Context, filters ...func(zone *gdns.ZonesFilter)) ([]gdns.Zone, error)
 	DeleteRRSetRecord(ctx context.Context, zone, name, recordType string, contents ...string) error
@@ -177,7 +177,7 @@ func (p *dnsProvider) ApplyChanges(rootCtx context.Context, changes *plan.Change
 		if zone == "" {
 			continue
 		}
-		recordValues := make([]gdns.ResourceRecords, 0)
+		recordValues := make([]gdns.ResourceRecord, 0)
 		errMsg := make([]string, 0)
 		for _, content := range c.Targets {
 			appliedChanges.created++
@@ -188,7 +188,7 @@ func (p *dnsProvider) ApplyChanges(rootCtx context.Context, changes *plan.Change
 			}
 			log.Debug(msg)
 			recordValues = append(recordValues,
-				*(&gdns.ResourceRecords{}).SetContent(c.RecordType, content))
+				*(&gdns.ResourceRecord{}).SetContent(c.RecordType, content))
 			errMsg = append(errMsg, msg)
 		}
 		gr1.Go(func() error {
@@ -208,7 +208,7 @@ func (p *dnsProvider) ApplyChanges(rootCtx context.Context, changes *plan.Change
 		if zone == "" {
 			continue
 		}
-		recordValues := make([]gdns.ResourceRecords, 0)
+		recordValues := make([]gdns.ResourceRecord, 0)
 		errMsg := make([]string, 0)
 		// find content diff to add
 		for _, content := range unexistingTargets(c, changes.UpdateOld, true) {
@@ -220,7 +220,7 @@ func (p *dnsProvider) ApplyChanges(rootCtx context.Context, changes *plan.Change
 			}
 			log.Debug(msg)
 			recordValues = append(recordValues,
-				*(&gdns.ResourceRecords{}).SetContent(c.RecordType, content))
+				*(&gdns.ResourceRecord{}).SetContent(c.RecordType, content))
 			errMsg = append(errMsg, msg)
 		}
 		if len(recordValues) == 0 {
