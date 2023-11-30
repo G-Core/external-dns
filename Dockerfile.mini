@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM golang:1.16 as builder
-
+FROM golang:1.18 as builder
+ARG ARCH
 WORKDIR /sigs.k8s.io/external-dns
 
 RUN apt-get update \
@@ -26,7 +26,7 @@ COPY go.sum .
 RUN go mod download
 
 COPY . .
-RUN make test build
+RUN make test build.$ARCH
 
 FROM gcr.io/distroless/static
 
